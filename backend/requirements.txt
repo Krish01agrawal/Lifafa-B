@@ -1,0 +1,11 @@
+fastapi
+uvicorn[standard]
+pymongo
+python-jose[cryptography]
+google-auth
+google-auth-oauthlib
+google-api-python-client
+mem0ai
+agno
+websockets
+python-multipart

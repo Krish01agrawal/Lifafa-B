@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GenAI Gmail Chat</title>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
+    #chat { border: 1px solid #ccc; height: 300px; overflow-y: auto; padding: 10px; margin-top: 20px; }
+    p { margin: 5px 0; }
+    #msg { width: 80%; }
+    button { padding: 5px 10px; }
+    /* Add some margin to the GSI button container if needed */
+    #gsiButton { margin-top: 10px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>GenAI Gmail Chat</h1>
+
+  <!-- Container for the Google Sign-In button -->
+  <div id="gsiButton"></div>
+  <p id="status">Please sign in with Google.</p>
+
+  <div style="margin-top:20px;">
+    <input id="msg" type="text" placeholder="Type message" />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <div id="chat"></div>
+
+<script>
+  // ========== Configuration ==========
+  const GOOGLE_CLIENT_ID = '1044620755407-6uoea682lqab82k4odt0a337m6rv55lg.apps.googleusercontent.com';
+  const BACKEND_URL = 'http://localhost:8001'; // Ensure this matches your backend port
+
+  let jwtToken = null;
+  let googleAccessToken = null;
+  let ws = null;
+
+  // ========== Google Sign-In Setup ==========
+  window.onload = function () {
+    try {
+      google.accounts.id.initialize({
+        client_id: GOOGLE_CLIENT_ID,
+        callback: handleCredentialResponse,
+        error_callback: (error) => {
+            console.error("GSI Initialization Error in index.html:", error);
+            setStatus("GSI Initialization Error. Check console.");
+            alert("GSI Initialization Error. Check console.");
+        }
+      });
+
+      google.accounts.id.renderButton(
+        document.getElementById("gsiButton"),
+        { theme: "outline", size: "large" } // Customize button as needed
+      );
+      setStatus("Waiting for Google sign-in via button...");
+      console.log("Google sign-in initialized in index.html, button rendered.");
+
+    } catch (error) {
+      console.error("Error during GSI setup in index.html:", error);
+      setStatus("Failed to initialize Google sign-in. Please try again.");
+      alert("Error initializing Google sign-in. Please refresh the page and try again.");
+    }
+  };
+
+  async function handleCredentialResponse(response) {
+    setStatus("Google sign-in credential received. Verifying...");
+    console.log("Google sign-in verified. Raw response:", response);
+    const googleIdToken = response.credential;
+
+    if (!googleIdToken) {
+        setStatus("Failed to get Google ID Token.");
+        alert("Failed to get Google ID Token from response. Check console.");
+        return;
+    }
+    
+    // console.log("Google ID Token:", googleIdToken); // For debugging, can be lengthy
+
+    // Step 1: Get JWT token from backend using Google ID token
+    try {
+      setStatus("Attempting to log in with backend...");
+      const loginRes = await fetch(`${BACKEND_URL}/auth/google-login`, {
+        method: 'POST',
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          // 'Origin': window.location.origin, // Origin header is usually managed by the browser for CORS
+          'Referrer-Policy': 'no-referrer-when-downgrade'
+        },
+        body: JSON.stringify({ token: googleIdToken }),
+      });
+
+      if (!loginRes.ok) {
+        const errorText = await loginRes.text();
+        setStatus(`Google login failed with backend. Status: ${loginRes.status}. Error: ${errorText}`);
+        alert(`Google login failed with backend. Status: ${loginRes.status}. Error: ${errorText}`);
+        return;
+      }
+
+      const loginData = await loginRes.json();
+      jwtToken = loginData.jwt_token;
+      setStatus("Backend login successful. JWT token received.");
+      console.log("JWT Token:", jwtToken);
+
+      // Step 2: Get Gmail access token for reading emails
+      setStatus("Requesting Gmail access token...");
+      googleAccessToken = await getGoogleAccessToken(); // This will trigger its own Google popup for scope approval
+      setStatus("Gmail access token received.");
+      console.log("Google Access Token for Gmail:", googleAccessToken ? googleAccessToken.substring(0,20)+'...' : 'Not received');
+
+
+      // Step 3: Fetch emails from backend
+      setStatus("Fetching emails from backend...");
+      const fetchRes = await fetch(`${BACKEND_URL}/gmail/fetch`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          // 'Origin': window.location.origin, // Managed by browser
+          'Referrer-Policy': 'no-referrer-when-downgrade'
+          // If your backend expects JWT as Bearer token:
+          // 'Authorization': `Bearer ${jwtToken}`
+        },
+        body: JSON.stringify({
+          jwt_token: jwtToken, // Keep if backend expects in body
+          access_token: googleAccessToken,
+        }),
+      });
+
+      if (!fetchRes.ok) {
+        const fetchErrorText = await fetchRes.text();
+        setStatus(`Failed to fetch emails. Status: ${fetchRes.status}. Error: ${fetchErrorText}`);
+        alert(`Failed to fetch emails. Status: ${fetchRes.status}. Error: ${fetchErrorText}`);
+        return;
+      }
+      const fetchData = await fetchRes.json();
+      setStatus(`Fetched ${fetchData.count} emails.`);
+
+      // Step 4: Connect WebSocket chat now
+      connectWebSocket();
+
+    } catch (err) {
+        setStatus(`An error occurred during backend communication: ${err.message}`);
+        console.error("Error in handleCredentialResponse after getting Google token:", err);
+        alert(`An error occurred: ${err.message}. Check console.`);
+    }
+  }
+
+  function setStatus(msg) {
+    document.getElementById('status').innerText = msg;
+    console.log(msg);
+  }
+
+  // Get Gmail Access Token with scope
+  function getGoogleAccessToken() {
+    setStatus("Initializing Google OAuth token client for Gmail scope...");
+    return new Promise((resolve, reject) => {
+      try {
+        const tokenClient = google.accounts.oauth2.initTokenClient({
+          client_id: GOOGLE_CLIENT_ID,
+          scope: 'https://www.googleapis.com/auth/gmail.readonly',
+          callback: (tokenResponse) => {
+            if (tokenResponse.error) {
+              console.error("Error from Gmail token request:", tokenResponse.error, tokenResponse.error_description);
+              setStatus(`Error getting Gmail access token: ${tokenResponse.error_description || tokenResponse.error}`);
+              reject(tokenResponse.error_description || tokenResponse.error);
+            } else {
+              console.log("Gmail access token response:", tokenResponse);
+              setStatus("Gmail access token successfully obtained.");
+              resolve(tokenResponse.access_token);
+            }
+          },
+          error_callback: (err) => { // Added error_callback for initTokenClient
+            console.error("Error initializing or using token client for Gmail:", err);
+            setStatus(`Error with Gmail token client: ${err.type || err.message}`);
+            reject(err.type || err.message);
+          }
+        });
+        tokenClient.requestAccessToken({prompt: 'consent'}); // Explicitly prompt for consent if needed for this scope
+      } catch(e) {
+        console.error("Exception in getGoogleAccessToken:", e);
+        setStatus(`Exception while getting Gmail access token: ${e.message}`);
+        reject(e.message);
+      }
+    });
+  }
+
+  // ========== WebSocket Chat ==========
+  function connectWebSocket() {
+    if (!jwtToken) {
+      alert("You need to sign in and authorize Gmail access first!");
+      setStatus("WebSocket connection aborted: JWT token missing.");
+      return;
+    }
+
+    ws = new WebSocket(`ws://${BACKEND_URL.replace(/^http:\/\//i, '')}/ws/chat`); // Construct WebSocket URL correctly
+    ws.onopen = () => {
+      ws.send(JSON.stringify({ jwt_token: jwtToken }));
+      appendMessage("System", "Connected to chat.");
+      setStatus("Chat connected.");
+    };
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.reply) {
+        appendMessage("Bot", data.reply);
+      }
+    };
+    ws.onerror = (event) => {
+        console.error("WebSocket error:", event);
+        appendMessage("System", "WebSocket error. Check console.");
+        setStatus("WebSocket error.");
+    };
+    ws.onclose = () => {
+        appendMessage("System", "Disconnected from chat.");
+        setStatus("Chat disconnected.");
+    };
+  }
+
+  function sendMessage() {
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      alert("WebSocket is not connected. Please sign in, authorize Gmail, and wait for connection.");
+      setStatus("Cannot send message: WebSocket not open.");
+      return;
+    }
+    const input = document.getElementById("msg");
+    const message = input.value.trim();
+    if (!message) return;
+
+    ws.send(JSON.stringify({ message }));
+    appendMessage("You", message);
+    input.value = "";
+  }
+
+  function appendMessage(sender, text) {
+    const chat = document.getElementById("chat");
+    const p = document.createElement("p");
+    p.textContent = `${sender}: ${text}`;
+    chat.appendChild(p);
+    chat.scrollTop = chat.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
