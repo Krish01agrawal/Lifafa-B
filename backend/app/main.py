@@ -1,13 +1,14 @@
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from app.auth import verify_google_token, create_jwt_token
+from app.auth import verify_google_token, create_jwt_token, decode_jwt_token
 from app.db import users_collection, emails_collection
 from app.gmail import build_gmail_service, fetch_emails
-from app.mem0_agent import upload_emails_to_mem0
+from app.mem0_agent import upload_emails_to_mem0, query_mem0
 from app.models import GoogleToken, GmailFetchPayload
 from app.websocket import router as websocket_router
 import logging
 from bson import ObjectId
+from pydantic import BaseModel
 
 # Configure basic logging
 logging.basicConfig(level=logging.INFO)
@@ -27,15 +28,10 @@ app.add_middleware(
 
 app.include_router(websocket_router)
 
-def convert_objectid_to_str(data):
-    """Recursively converts ObjectId instances in a dictionary or list to strings."""
-    if isinstance(data, list):
-        return [convert_objectid_to_str(item) for item in data]
-    elif isinstance(data, dict):
-        return {key: convert_objectid_to_str(value) for key, value in data.items()}
-    elif isinstance(data, ObjectId):
-        return str(data)
-    return data
+# Define a Pydantic model for the test query request body
+class TestMem0QueryPayload(BaseModel):
+    user_id: str
+    query: str
 
 @app.post("/auth/google-login")
 async def google_login(payload: GoogleToken):
@@ -92,7 +88,6 @@ async def google_login(payload: GoogleToken):
 @app.post("/gmail/fetch")
 async def gmail_fetch(payload: GmailFetchPayload):
     # Authenticate user with JWT
-    from app.auth import decode_jwt_token
     logger.info("Received request for /gmail/fetch")
     try:
         logger.info("Decoding JWT token...")
@@ -134,3 +129,28 @@ async def gmail_fetch(payload: GmailFetchPayload):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, 
             detail=f"An unexpected error occurred during gmail fetch: {str(e)}"
         )
+
+@app.post("/test/mem0-query")
+async def test_mem0_query_endpoint(payload: TestMem0QueryPayload):
+    logger.info(f"Received request for /test/mem0-query for user_id: {payload.user_id} with query: {payload.query}")
+    try:
+        # Note: This endpoint does not perform JWT authentication for simplicity in direct testing.
+        # In a production scenario, you would likely want to protect this.
+        results = await query_mem0(user_id=payload.user_id, query=payload.query)
+        return results
+    except Exception as e:
+        logger.error(f"Error in /test/mem0-query endpoint: {str(e)}", exc_info=True)
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"An unexpected error occurred: {str(e)}"
+        )
+
+def convert_objectid_to_str(data):
+    """Recursively converts ObjectId instances in a dictionary or list to strings."""
+    if isinstance(data, list):
+        return [convert_objectid_to_str(item) for item in data]
+    elif isinstance(data, dict):
+        return {key: convert_objectid_to_str(value) for key, value in data.items()}
+    elif isinstance(data, ObjectId):
+        return str(data)
+    return data

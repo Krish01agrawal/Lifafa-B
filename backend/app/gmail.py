@@ -5,6 +5,7 @@ import re
 from typing import List
 import html
 import os
+from datetime import datetime, timedelta
 
 SCOPES = ['https://www.googleapis.com/auth/gmail.readonly']
 
@@ -14,8 +15,23 @@ def build_gmail_service(access_token: str):
     return service
 
 async def fetch_emails(service, user_id='me', max_results=100):
-    results = service.users().messages().list(userId=user_id, maxResults=max_results).execute()
+    # Calculate the date 15 days ago for the query
+    # Note: Gmail API's 'newer_than:15d' is simpler and often preferred.
+    # query_string = 'newer_than:15d'
+
+    # Using newer_than:15d for simplicity with Gmail API
+    query_filter = 'newer_than:10d'
+    
+    results = service.users().messages().list(
+        userId=user_id, 
+        maxResults=max_results,
+        q=query_filter  # Add the query filter here
+    ).execute()
     messages = results.get('messages', [])
+    if not messages:
+        print(f"No emails found matching criteria: {query_filter}")
+        return []
+    
     emails = []
     for msg in messages:
         message = service.users().messages().get(userId=user_id, id=msg['id'], format='full').execute()

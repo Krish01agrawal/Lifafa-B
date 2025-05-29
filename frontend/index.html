@@ -12,6 +12,16 @@
     button { padding: 5px 10px; }
     /* Add some margin to the GSI button container if needed */
     #gsiButton { margin-top: 10px; margin-bottom: 10px; }
+
+    /* Style for bot messages to handle multi-line text */
+    .bot-message-style {
+      white-space: pre-wrap; /* Preserves newlines and spaces, wraps text */
+      word-wrap: break-word; /* Breaks long words if necessary */
+      background-color: #f1f1f1; /* Optional: different background for bot messages */
+      padding: 8px;
+      border-radius: 5px;
+      margin-bottom: 5px; /* Consistent with general p styling if needed */
+    }
   </style>
 </head>
 <body>
@@ -195,18 +205,56 @@
       return;
     }
 
-    ws = new WebSocket(`ws://${BACKEND_URL.replace(/^http:\/\//i, '')}/ws/chat`); // Construct WebSocket URL correctly
+    ws = new WebSocket(`ws://${BACKEND_URL.replace(/^http:\/\//i, '')}/ws/chat`); 
     ws.onopen = () => {
       ws.send(JSON.stringify({ jwt_token: jwtToken }));
       appendMessage("System", "Connected to chat.");
       setStatus("Chat connected.");
     };
+
+    // UPDATED ws.onmessage HANDLER
     ws.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.reply) {
-        appendMessage("Bot", data.reply);
+      console.log("[WebSocket] Raw event.data:", event.data);
+      let botResponseText = ""; 
+      try {
+        const data = JSON.parse(event.data);
+        console.log("[WebSocket] Parsed data type:", typeof data);
+        console.log("[WebSocket] Parsed data content:", data);
+
+        const searchResultsArray = Array.isArray(data) ? data : (data && Array.isArray(data.reply)) ? data.reply : null;
+
+        if (data && data.error) {
+          botResponseText = `Error - ${data.error}`;
+        } else if (searchResultsArray) { 
+          if (searchResultsArray.length > 0) {
+            let snippets = "Found these relevant snippets:";
+            searchResultsArray.forEach((hit, index) => {
+              let memoryEntry = "No content preview available.";
+              if (hit && typeof hit.memory === 'string') {
+                memoryEntry = hit.memory;
+              } else if (hit && typeof hit.text === 'string') { 
+                memoryEntry = hit.text;
+              }
+              snippets += `\n\n[${index + 1}] ${memoryEntry.substring(0, 300)}${memoryEntry.length > 300 ? '...' : ''}`;
+            });
+            botResponseText = snippets;
+          } else {
+            botResponseText = "I found no specific snippets for your query in the email data.";
+          }
+        } else if (typeof data === 'string') { 
+          botResponseText = data; 
+        } else {
+          botResponseText = "Received an unrecognized data structure from server.";
+          console.warn("[WebSocket] Unrecognized data structure:", data);
+        }
+      } catch (e) {
+        console.error("[WebSocket] Error processing message:", e);
+        botResponseText = "(Error parsing raw data): " + event.data; 
       }
+      console.log("[WebSocket] Final botResponseText before appendMessage:", botResponseText);
+      appendMessage("Bot", botResponseText, true); 
     };
+
     ws.onerror = (event) => {
         console.error("WebSocket error:", event);
         appendMessage("System", "WebSocket error. Check console.");
@@ -229,14 +277,27 @@
     if (!message) return;
 
     ws.send(JSON.stringify({ message }));
-    appendMessage("You", message);
+    appendMessage("You", message, false);
     input.value = "";
   }
 
-  function appendMessage(sender, text) {
+  function appendMessage(sender, text, isBot = false) {
     const chat = document.getElementById("chat");
     const p = document.createElement("p");
-    p.textContent = `${sender}: ${text}`;
+
+    if (isBot) {
+      p.classList.add("bot-message-style"); // This class has white-space: pre-wrap
+      // Defensive check: if text is still an array for bot, stringify for debug output
+      if (Array.isArray(text)) {
+        console.warn("[appendMessage] Bot message received as Array, not formatted string. Stringifying for display.", text);
+        p.textContent = `${sender}: ${JSON.stringify(text, null, 2)}`; // Pretty print JSON
+      } else {
+        p.textContent = `${sender}: ${text}`; // Should be the formatted string
+      }
+    } else {
+      p.textContent = `${sender}: ${text}`; // For user and system messages
+    }
+    
     chat.appendChild(p);
     chat.scrollTop = chat.scrollHeight;
   }
