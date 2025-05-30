@@ -44,38 +44,38 @@ agent_memory_platform_client = MemoryClient()
 async def upload_emails_to_mem0(user_id: str, emails: list):
     print(f"Starting email upload process to Mem0 for user_id: {user_id}. Total emails to process: {len(emails)}")
     # Ensure each email is uploaded to Mem0, using its Gmail ID as memory_id for de-duplication/update.
-    # for email_data in emails:
-    #     gmail_message_id = email_data.get('id') # Assumes email_data from MongoDB has 'id' field from Gmail message ID
+    for email_data in emails:
+        gmail_message_id = email_data.get('id') # Assumes email_data from MongoDB has 'id' field from Gmail message ID
 
-    #     if not gmail_message_id:
-    #         print(f"Skipping email upload: Mem0 for user {user_id} due to missing Gmail message ID. Subject: {email_data.get('subject', 'N/A')}")
-    #         continue # Skip this email if it doesn't have a unique ID
+        if not gmail_message_id:
+            print(f"Skipping email upload: Mem0 for user {user_id} due to missing Gmail message ID. Subject: {email_data.get('subject', 'N/A')}")
+            continue # Skip this email if it doesn't have a unique ID
 
-    #     # Construct the content to be stored in Mem0
-    #     content = f"Subject: {email_data.get('subject', 'N/A')}\\nSnippet: {email_data.get('snippet', '')}\\nBody: {email_data.get('body', '')}"
+        # Construct the content to be stored in Mem0
+        content = f"Subject: {email_data.get('subject', 'N/A')}\\nSnippet: {email_data.get('snippet', '')}\\nBody: {email_data.get('body', '')}"
         
-    #     # Mem0 expects a list of messages for the .add() method
-    #     messages_to_add = [
-    #         {
-    #             "role": "user", # Or another role that semantically represents the email data source
-    #             "content": content
-    #         }
-    #     ]
+        # Mem0 expects a list of messages for the .add() method
+        messages_to_add = [
+            {
+                "role": "user", # Or another role that semantically represents the email data source
+                "content": content
+            }
+        ]
         
-    #     try:
-    #         # Use Gmail's message ID as Mem0's memory_id.
-    #         # This tells Mem0 to update the memory if this ID already exists for the user, otherwise create it.
-    #         print(f"Uploading/updating email with ID {gmail_message_id} to Mem0 for user {user_id}...")
-    #         response = await aclient.add(
-    #             messages=messages_to_add, 
-    #             user_id=user_id,
-    #             memory_id=gmail_message_id 
-    #         )
-    #         # For debugging, you can inspect the response from Mem0:
-    #         # print(f"Mem0 response for memory_id {gmail_message_id} (user {user_id}): {response}")
-    #     except Exception as e:
-    #         print(f"ERROR uploading/updating email (ID: {gmail_message_id}) in Mem0 for user {user_id}: {e}")
-    # print(f"Finished email upload process to Mem0 for user_id: {user_id}.")
+        try:
+            # Use Gmail's message ID as Mem0's memory_id.
+            # This tells Mem0 to update the memory if this ID already exists for the user, otherwise create it.
+            print(f"Uploading/updating email with ID {gmail_message_id} to Mem0 for user {user_id}...")
+            response = await aclient.add(
+                messages=messages_to_add, 
+                user_id=user_id,
+                memory_id=gmail_message_id 
+            )
+            # For debugging, you can inspect the response from Mem0:
+            # print(f"Mem0 response for memory_id {gmail_message_id} (user {user_id}): {response}")
+        except Exception as e:
+            print(f"ERROR uploading/updating email (ID: {gmail_message_id}) in Mem0 for user {user_id}: {e}")
+    print(f"Finished email upload process to Mem0 for user_id: {user_id}.")
 
 async def query_mem0(user_id: str, query: str):
     print(f"Querying OpenAI directly for user_id: {user_id}, query: '{query}'")
