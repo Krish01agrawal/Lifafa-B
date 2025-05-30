@@ -35,7 +35,7 @@ async def websocket_endpoint(websocket: WebSocket):
             reply = await query_mem0(user_id=user_id, query=query)
 
             # Stream reply (send as one message for simplicity)
-            await websocket.send_json({"reply": reply})
+            await websocket.send_json(reply)
 
             # TODO: Save chat to MongoDB (can be added here)
     except WebSocketDisconnect:

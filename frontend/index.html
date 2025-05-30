@@ -221,38 +221,22 @@
         console.log("[WebSocket] Parsed data type:", typeof data);
         console.log("[WebSocket] Parsed data content:", data);
 
-        const searchResultsArray = Array.isArray(data) ? data : (data && Array.isArray(data.reply)) ? data.reply : null;
-
-        if (data && data.error) {
-          botResponseText = `Error - ${data.error}`;
-        } else if (searchResultsArray) { 
-          if (searchResultsArray.length > 0) {
-            let snippets = "Found these relevant snippets:";
-            searchResultsArray.forEach((hit, index) => {
-              let memoryEntry = "No content preview available.";
-              if (hit && typeof hit.memory === 'string') {
-                memoryEntry = hit.memory;
-              } else if (hit && typeof hit.text === 'string') { 
-                memoryEntry = hit.text;
-              }
-              snippets += `\n\n[${index + 1}] ${memoryEntry.substring(0, 300)}${memoryEntry.length > 300 ? '...' : ''}`;
-            });
-            botResponseText = snippets;
-          } else {
-            botResponseText = "I found no specific snippets for your query in the email data.";
-          }
-        } else if (typeof data === 'string') { 
-          botResponseText = data; 
+        if (data && data.error && data.reply && Array.isArray(data.reply) && data.reply.length > 0) {
+          // If there's an error flag and a message in reply, display that error
+          botResponseText = `Bot Error: ${data.reply[0]}`;
+        } else if (data && data.reply && Array.isArray(data.reply) && data.reply.length > 0) {
+          // This is the expected successful response format: {"reply": ["AI response string"]}
+          botResponseText = data.reply[0]; // Directly take the first string from the reply array
         } else {
           botResponseText = "Received an unrecognized data structure from server.";
           console.warn("[WebSocket] Unrecognized data structure:", data);
         }
       } catch (e) {
-        console.error("[WebSocket] Error processing message:", e);
-        botResponseText = "(Error parsing raw data): " + event.data; 
+        botResponseText = "Error parsing message from server.";
+        console.error("[WebSocket] Error parsing message:", e, "Raw data:", event.data);
       }
       console.log("[WebSocket] Final botResponseText before appendMessage:", botResponseText);
-      appendMessage("Bot", botResponseText, true); 
+      appendMessage("Bot", botResponseText);
     };
 
     ws.onerror = (event) => {
