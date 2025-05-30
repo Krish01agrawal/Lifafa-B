@@ -16,11 +16,14 @@ GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI", "http://localhost:8001/auth/callback")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:8000")
 
+print(f"GOOGLE_CLIENT_SECRET: {GOOGLE_CLIENT_SECRET}")
+
+
 # Scopes needed for Gmail access
 SCOPES = [
     'openid',
-    'email',
-    'profile',
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile',
     'https://www.googleapis.com/auth/gmail.readonly'
 ]
 
