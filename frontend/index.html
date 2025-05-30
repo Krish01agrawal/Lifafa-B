@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <title>GenAI Gmail Chat</title>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: auto; }
     #chat { border: 1px solid #ccc; height: 300px; overflow-y: auto; padding: 10px; margin-top: 20px; }
@@ -67,6 +68,17 @@
       );
       setStatus("Waiting for Google sign-in via button...");
       console.log("Google sign-in initialized in index.html, button rendered.");
+
+      // Add event listener for Enter key on message input
+      const msgInput = document.getElementById("msg");
+      if (msgInput) {
+        msgInput.addEventListener("keydown", function(event) {
+          if (event.key === "Enter") {
+            event.preventDefault(); // Prevent default Enter behavior (e.g., newline in some inputs or form submission)
+            sendMessage();
+          }
+        });
+      }
 
     } catch (error) {
       console.error("Error during GSI setup in index.html:", error);
@@ -236,7 +248,7 @@
         console.error("[WebSocket] Error parsing message:", e, "Raw data:", event.data);
       }
       console.log("[WebSocket] Final botResponseText before appendMessage:", botResponseText);
-      appendMessage("Bot", botResponseText);
+      appendMessage("Bot", botResponseText, true);
     };
 
     ws.onerror = (event) => {
@@ -270,14 +282,11 @@
     const p = document.createElement("p");
 
     if (isBot) {
-      p.classList.add("bot-message-style"); // This class has white-space: pre-wrap
-      // Defensive check: if text is still an array for bot, stringify for debug output
-      if (Array.isArray(text)) {
-        console.warn("[appendMessage] Bot message received as Array, not formatted string. Stringifying for display.", text);
-        p.textContent = `${sender}: ${JSON.stringify(text, null, 2)}`; // Pretty print JSON
-      } else {
-        p.textContent = `${sender}: ${text}`; // Should be the formatted string
-      }
+      p.classList.add("bot-message-style");
+      // Use marked.parse() to convert markdown to HTML
+      // Ensure to handle potential null or undefined text to avoid errors with marked
+      const htmlContent = text ? marked.parse(text) : ''; 
+      p.innerHTML = `${sender}: ${htmlContent}`; // Set innerHTML for rendered markdown
     } else {
       p.textContent = `${sender}: ${text}`; // For user and system messages
     }

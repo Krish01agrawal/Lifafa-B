@@ -44,44 +44,60 @@ agent_memory_platform_client = MemoryClient()
 async def upload_emails_to_mem0(user_id: str, emails: list):
     print(f"Starting email upload process to Mem0 for user_id: {user_id}. Total emails to process: {len(emails)}")
     # Ensure each email is uploaded to Mem0, using its Gmail ID as memory_id for de-duplication/update.
-    for email_data in emails:
-        gmail_message_id = email_data.get('id') # Assumes email_data from MongoDB has 'id' field from Gmail message ID
+    # for email_data in emails:
+    #     gmail_message_id = email_data.get('id') # Assumes email_data from MongoDB has 'id' field from Gmail message ID
 
-        if not gmail_message_id:
-            print(f"Skipping email upload: Mem0 for user {user_id} due to missing Gmail message ID. Subject: {email_data.get('subject', 'N/A')}")
-            continue # Skip this email if it doesn't have a unique ID
+    #     if not gmail_message_id:
+    #         print(f"Skipping email upload: Mem0 for user {user_id} due to missing Gmail message ID. Subject: {email_data.get('subject', 'N/A')}")
+    #         continue # Skip this email if it doesn't have a unique ID
 
-        # Construct the content to be stored in Mem0
-        content = f"Subject: {email_data.get('subject', 'N/A')}\\nSnippet: {email_data.get('snippet', '')}\\nBody: {email_data.get('body', '')}"
+    #     # Construct the content to be stored in Mem0
+    #     content = f"Subject: {email_data.get('subject', 'N/A')}\\nSnippet: {email_data.get('snippet', '')}\\nBody: {email_data.get('body', '')}"
         
-        # Mem0 expects a list of messages for the .add() method
-        messages_to_add = [
-            {
-                "role": "user", # Or another role that semantically represents the email data source
-                "content": content
-            }
-        ]
+    #     # Mem0 expects a list of messages for the .add() method
+    #     messages_to_add = [
+    #         {
+    #             "role": "user", # Or another role that semantically represents the email data source
+    #             "content": content
+    #         }
+    #     ]
         
-        try:
-            # Use Gmail's message ID as Mem0's memory_id.
-            # This tells Mem0 to update the memory if this ID already exists for the user, otherwise create it.
-            print(f"Uploading/updating email with ID {gmail_message_id} to Mem0 for user {user_id}...")
-            response = await aclient.add(
-                messages=messages_to_add, 
-                user_id=user_id,
-                memory_id=gmail_message_id 
-            )
-            # For debugging, you can inspect the response from Mem0:
-            # print(f"Mem0 response for memory_id {gmail_message_id} (user {user_id}): {response}")
-        except Exception as e:
-            print(f"ERROR uploading/updating email (ID: {gmail_message_id}) in Mem0 for user {user_id}: {e}")
-    print(f"Finished email upload process to Mem0 for user_id: {user_id}.")
+    #     try:
+    #         # Use Gmail's message ID as Mem0's memory_id.
+    #         # This tells Mem0 to update the memory if this ID already exists for the user, otherwise create it.
+    #         print(f"Uploading/updating email with ID {gmail_message_id} to Mem0 for user {user_id}...")
+    #         response = await aclient.add(
+    #             messages=messages_to_add, 
+    #             user_id=user_id,
+    #             memory_id=gmail_message_id 
+    #         )
+    #         # For debugging, you can inspect the response from Mem0:
+    #         # print(f"Mem0 response for memory_id {gmail_message_id} (user {user_id}): {response}")
+    #     except Exception as e:
+    #         print(f"ERROR uploading/updating email (ID: {gmail_message_id}) in Mem0 for user {user_id}: {e}")
+    # print(f"Finished email upload process to Mem0 for user_id: {user_id}.")
 
 async def query_mem0(user_id: str, query: str):
     print(f"Querying OpenAI directly for user_id: {user_id}, query: '{query}'")
     
+    system_prompt = (
+        "You are a highly insightful assistant specializing in analyzing email data. "
+        "Based on the provided email snippets and the user's query, provide a comprehensive and structured answer. "
+        "Your response should be easy to understand and professional.\n\n"
+        "Follow these guidelines for your response:\n"
+        "1. Start with a brief, direct answer or summary of your findings related to the user's query."
+        "2. If specific email snippets support your answer, present them clearly, perhaps using bullet points or numbered lists. Refer to them as 'insights from emails' or similar."
+        "3. For each relevant insight, explain its significance in relation to the query."
+        "4. If multiple emails touch on the same topic, synthesize the information rather than just listing each email separately, unless the user asks for individual email details."
+        "5. If the provided email snippets are insufficient to fully answer the query, clearly state what information is missing or what aspects cannot be addressed based on the context."
+        "6. Conclude with a summary or an offer for further assistance if applicable."
+        "7. Use markdown for formatting, especially for lists, bolding key terms, and ensuring readability. Remember that the output will be rendered in HTML that respects newlines (pre-wrap)."
+        "8. Do NOT just list the snippets. Provide analysis and connect them to the user's query."
+        "9. If no relevant emails are found in the context, state that clearly, for example: 'Based on the provided email data, I could not find specific information related to your query about [topic].'"
+    )
+    
     messages = [
-        {"role": "system", "content": "You are a helpful assistant that answers questions based on provided email context. If the context is empty or not relevant, say you don't have enough information."}
+        {"role": "system", "content": system_prompt}
     ]
     
     context_str = ""
