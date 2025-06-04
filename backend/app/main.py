@@ -1,3 +1,12 @@
+import os
+from dotenv import load_dotenv
+
+# Determine the path to the .env file (two levels up from this file)
+# main.py is in backend/app/main.py, .env is in the root
+dotenv_path = os.path.join(os.path.dirname(__file__), '..', '..', '.env')
+load_dotenv(dotenv_path)
+
+# Now proceed with other imports
 from fastapi import FastAPI, Depends, HTTPException, status, Request, Header
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,7 +21,6 @@ from app.websocket import router as websocket_router
 import logging
 from bson import ObjectId
 from pydantic import BaseModel
-import os
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 # Configure basic logging
@@ -27,7 +35,7 @@ security = HTTPBearer()
 # Allow CORS from frontend origin (adjust as needed)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8000", "http://localhost:8001", "http://127.0.0.1:8000", "http://127.0.0.1:8001"],
+    allow_origins=["http://ec2-13-127-58-101.ap-south-1.compute.amazonaws.com", "http://ec2-13-127-58-101.ap-south-1.compute.amazonaws.com/api", "http://localhost:8000", "http://localhost:8001", "http://127.0.0.1:8000", "http://127.0.0.1:8001"],
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization", "Accept", "Origin", "Referrer-Policy"],
@@ -120,7 +128,7 @@ async def gmail_fetch(payload: GmailFetchPayload):
         logger.info(f"JWT decoded. User ID: {user_id}")
 
         # Call the core processing function
-        result = await _trigger_and_process_user_emails(user_id=user_id, access_token=payload.access_token, max_results=100)
+        result = await _trigger_and_process_user_emails(user_id=user_id, access_token=payload.access_token, max_results=10)
 
         if result["status"] == "error":
             raise HTTPException(
@@ -170,6 +178,7 @@ async def login():
 async def oauth_callback(code: str = None, state: str = None, error: str = None):
     """Handle OAuth callback from Google."""
     frontend_url = os.getenv("FRONTEND_URL", "http://localhost:8000")
+    # frontend_url = os.getenv("FRONTEND_URL", "http://ec2-13-127-58-101.ap-south-1.compute.amazonaws.com")
     
     if error:
         logger.error(f"OAuth error: {error}")
@@ -256,7 +265,7 @@ async def fetch_user_emails(authorization: str = Header(None)):
         access_token = user_in_db["access_token"]
 
         # Call the core processing function
-        result = await _trigger_and_process_user_emails(user_id=user_id, access_token=access_token, max_results=100) # Default max_results
+        result = await _trigger_and_process_user_emails(user_id=user_id, access_token=access_token, max_results=10) # Default max_results
 
         if result["status"] == "error":
             raise HTTPException(
@@ -284,7 +293,7 @@ async def fetch_user_emails(authorization: str = Header(None)):
 # Alternative endpoint with JWT in body (easier for frontend)
 class EmailFetchRequest(BaseModel):
     jwt_token: str
-    max_results: int = 100
+    max_results: int = 10
 
 @app.post("/emails/fetch-with-token")
 async def fetch_user_emails_with_token(payload: EmailFetchRequest):
@@ -407,7 +416,7 @@ def convert_objectid_to_str(data):
     return data
 
 # Core email processing function
-async def _trigger_and_process_user_emails(user_id: str, access_token: str, max_results: int = 5):
+async def _trigger_and_process_user_emails(user_id: str, access_token: str, max_results: int = 10):
     logger.info(f"Starting email processing for user_id: {user_id}")
     try:
         # Mark that email fetch process has been initiated for this user
@@ -483,7 +492,7 @@ async def check_and_fetch_new_user_emails():
             
             logger.info(f"Background worker: Found user {user_id} with fetched_email=false. Triggering email processing.")
             # Using a default max_results for background tasks, adjust as needed
-            await _trigger_and_process_user_emails(user_id=user_id, access_token=access_token, max_results=100) 
+            await _trigger_and_process_user_emails(user_id=user_id, access_token=access_token, max_results=10) 
             # Add a small delay or use a more sophisticated queue if you have many users to avoid bursting API limits
             # await asyncio.sleep(1) # Example delay
 
