@@ -14,10 +14,13 @@ logger = logging.getLogger(__name__)
 GOOGLE_CLIENT_ID = os.getenv("GOOGLE_CLIENT_ID")
 GOOGLE_CLIENT_SECRET = os.getenv("GOOGLE_CLIENT_SECRET")
 REDIRECT_URI = os.getenv("REDIRECT_URI", "http://localhost:8001/auth/callback")
+# REDIRECT_URI = os.getenv("REDIRECT_URI", "http://ec2-13-127-58-101.ap-south-1.compute.amazonaws.com/api/auth/callback")
 FRONTEND_URL = os.getenv("FRONTEND_URL", "http://localhost:8000")
+# FRONTEND_URL = os.getenv("FRONTEND_URL", "http://ec2-13-127-58-101.ap-south-1.compute.amazonaws.com")
 
 print(f"GOOGLE_CLIENT_SECRET: {GOOGLE_CLIENT_SECRET}")
-
+print(f"REDIRECT_URI: {REDIRECT_URI}")
+print(f"FRONTEND_URL: {FRONTEND_URL}")
 
 # Scopes needed for Gmail access
 SCOPES = [
