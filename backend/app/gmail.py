@@ -14,7 +14,7 @@ def build_gmail_service(access_token: str):
     service = build('gmail', 'v1', credentials=creds)
     return service
 
-async def fetch_emails(service, user_id='me', max_results=3500):
+async def fetch_emails(service, user_id='me', max_results=4500):
     # Calculate the date 15 days ago for the query
     # Note: Gmail API's 'newer_than:15d' is simpler and often preferred.
     # query_string = 'newer_than:15d'
