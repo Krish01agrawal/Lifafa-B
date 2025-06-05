@@ -22,6 +22,7 @@ import logging
 from bson import ObjectId
 from pydantic import BaseModel
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from fastapi.concurrency import run_in_threadpool
 
 # Configure basic logging
 logging.basicConfig(level=logging.INFO)
@@ -35,7 +36,18 @@ security = HTTPBearer()
 # Allow CORS from frontend origin (adjust as needed)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://ec2-13-127-58-101.ap-south-1.compute.amazonaws.com", "http://ec2-13-127-58-101.ap-south-1.compute.amazonaws.com/api", "http://localhost:8000", "http://localhost:8001", "http://127.0.0.1:8000", "http://127.0.0.1:8001"],
+    allow_origins=[
+        "http://localhost:8000",  # Added for local dev
+        "http://localhost:8001",  # Added for local dev (if backend is on this port)
+        "http://127.0.0.1:8000", # Added for local dev
+        "http://127.0.0.1:8001", # Added for local dev (if backend is on this port)
+        "https://localhost:8000", 
+        "https://localhost:8001", 
+        "https://127.0.0.1:8000", 
+        "https://127.0.0.1:8001",
+        "https://ec2-13-127-58-101.ap-south-1.compute.amazonaws.com", 
+        "https://ec2-13-127-58-101.ap-south-1.compute.amazonaws.com/api"
+    ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type", "Authorization", "Accept", "Origin", "Referrer-Policy"],
@@ -429,10 +441,10 @@ async def _trigger_and_process_user_emails(user_id: str, access_token: str, max_
 
         # Build Gmail service and fetch emails
         logger.info(f"Building Gmail service for user_id: {user_id}")
-        service = build_gmail_service(access_token)
+        service = await run_in_threadpool(build_gmail_service, access_token)
         
         logger.info(f"Fetching emails from Gmail for user_id: {user_id} (max: {max_results})...")
-        emails = await fetch_emails(service, max_results=max_results)
+        emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
         logger.info(f"Fetched {len(emails)} emails from Gmail for user_id: {user_id}")
         
         if emails:
