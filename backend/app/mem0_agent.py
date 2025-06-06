@@ -4,6 +4,7 @@ from agno.models.openai import OpenAIChat
 import os
 import asyncio
 import openai # Import the openai library
+from fastapi.concurrency import run_in_threadpool # Added import
 
 try:
     # AsyncMemoryClient for async uploads, MemoryClient for synchronous agent interaction with Mem0 Platform
@@ -103,7 +104,13 @@ async def query_mem0(user_id: str, query: str):
     context_str = ""
     try:
         if agent_memory_platform_client:
-            retrieved_memories = agent_memory_platform_client.search(query=query, user_id=user_id, limit=5) # Limit context size
+            # Wrap the blocking .search() call in run_in_threadpool
+            retrieved_memories = await run_in_threadpool(
+                agent_memory_platform_client.search, 
+                query=query, 
+                user_id=user_id, 
+                limit=25
+            )
             print(f"DEBUG [query_mem0]: Mem0 search results for user {user_id}, query '{query}': {retrieved_memories}")
             if retrieved_memories:
                 context_str = "\\n\\nRelevant email snippets:\\n"
