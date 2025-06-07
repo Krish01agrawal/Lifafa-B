@@ -59,7 +59,7 @@ async def fetch_emails(service, user_id='me', max_results=4500):
     # query_string = 'newer_than:15d'
 
     # Using newer_than:15d for simplicity with Gmail API
-    query_filter = 'newer_than:50d'
+    query_filter = 'newer_than:120d'
     logger.info(f"Using query filter: {query_filter}")
     
     all_messages = []
