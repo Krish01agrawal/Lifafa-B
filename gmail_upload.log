@@ -1,0 +1,122 @@
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | logger_config:118 | 🎛️ Logging system initialized successfully
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | logger_config:119 | 📝 Detailed logs: gmail_upload.log
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | logger_config:120 | 🚨 Error logs: gmail_upload_errors.log
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:32 | 🚀 Starting logging system test
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:206 | 🌍 Environment Information:
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:207 |    🐍 Python version: 3.13.3 (v3.13.3:6280bb54784, Apr  8 2025, 10:47:54) [Clang 15.0.0 (clang-1500.3.9.4)]
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:208 |    📁 Working directory: /Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:209 |    🔑 OPENAI_API_KEY configured: True
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:210 |    🧠 MEM0_API_KEY configured: True
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:211 |    📊 GOOGLE_CLIENT_ID configured: True
+2025-06-07 11:41:47 | DEBUG | __main__:38 | 🔍 This is a debug message
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:39 | ℹ️ This is an info message
+2025-06-07 11:41:47 | [33m⚠️ WARNING[0m | __main__:40 | ⚠️ This is a warning message
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | __main__:41 | ❌ This is an error message
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:88 | 📊 Processing tracker initialized for user test_user_123: 5 emails to process
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:92 | ⏳ test_user_123: Processing emails
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 1/5 - ID: email1
+2025-06-07 11:41:47 | DEBUG | utils:97 | ✅ test_user_123: Email email1 processed successfully (1/5)
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:66 | ✅ Email 1 processed successfully
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 2/5 - ID: email2
+2025-06-07 11:41:47 | DEBUG | utils:97 | ✅ test_user_123: Email email2 processed successfully (2/5)
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:66 | ✅ Email 2 processed successfully
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 3/5 - ID: email3
+2025-06-07 11:41:47 | DEBUG | utils:97 | ✅ test_user_123: Email email3 processed successfully (3/5)
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:66 | ✅ Email 3 processed successfully
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 4/5 - ID: 
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:108 | ❌ test_user_123: Email  failed in validation: Validation failed: Email ID must be a non-empty string
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | __main__:70 | ❌ Email 4 failed validation: Validation failed: Email ID must be a non-empty string
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 5/5 - ID: email5
+2025-06-07 11:41:47 | DEBUG | utils:97 | ✅ test_user_123: Email email5 processed successfully (4/5)
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:66 | ✅ Email 5 processed successfully
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:76 | 🧹 Testing content sanitization
+2025-06-07 11:41:47 | [33m⚠️ WARNING[0m | utils:161 | ⚠️ Content truncated from 15034 to 1000 characters
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:80 | 📝 Sanitized content length: 1015
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:83 | 🔧 Testing error formatting
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 401 Unauthorized
+NoneType: None
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: 401 Unauthorized -> User-friendly: Authentication failed. Please check your Google account permissions.
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 403 Forbidden
+NoneType: None
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: 403 Forbidden -> User-friendly: Access denied. Please ensure you have granted necessary permissions.
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 429 Too Many Requests
+NoneType: None
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: 429 Too Many Requests -> User-friendly: Too many requests. Please try again later.
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: Network connection failed
+NoneType: None
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: Network connection failed -> User-friendly: Network connection issue. Please check your internet connection.
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: Some unknown error occurred
+NoneType: None
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: Some unknown error occurred -> User-friendly: An error occurred during email processing. Please try again.
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:131 | 📊 Processing Summary for test_user_123:
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:132 |    📧 Total emails: 5
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:133 |    ✅ Successful: 4
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:134 |    ❌ Failed: 1
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:135 |    📈 Success rate: 80.0%
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | utils:136 |    ⏱️ Duration: 0.51s
+2025-06-07 11:41:47 | [33m⚠️ WARNING[0m | utils:139 |    🚨 Error breakdown:
+2025-06-07 11:41:47 | [33m⚠️ WARNING[0m | utils:146 |      - validation: 1 errors
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:100 | ✅ Logging system test completed successfully
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:101 | 📝 Check 'gmail_upload.log' for detailed logs
+2025-06-07 11:41:47 | [32mℹ️ INFO[0m | __main__:102 | 🚨 Check 'gmail_upload_errors.log' for error logs
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | logger_config:118 | 🎛️ Logging system initialized successfully
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | logger_config:119 | 📝 Detailed logs: gmail_upload.log
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | logger_config:120 | 🚨 Error logs: gmail_upload_errors.log
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | __main__:32 | 🚀 Starting logging system test
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | utils:206 | 🌍 Environment Information:
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | utils:207 |    🐍 Python version: 3.13.3 (v3.13.3:6280bb54784, Apr  8 2025, 10:47:54) [Clang 15.0.0 (clang-1500.3.9.4)]
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | utils:208 |    📁 Working directory: /Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | utils:209 |    🔑 OPENAI_API_KEY configured: True
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | utils:210 |    🧠 MEM0_API_KEY configured: True
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | utils:211 |    📊 GOOGLE_CLIENT_ID configured: True
+2025-06-07 11:56:40 | DEBUG | __main__:38 | 🔍 This is a debug message
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | __main__:39 | ℹ️ This is an info message
+2025-06-07 11:56:40 | [33m⚠️ WARNING[0m | __main__:40 | ⚠️ This is a warning message
+2025-06-07 11:56:40 | [31m❌ ERROR[0m | __main__:41 | ❌ This is an error message
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | utils:88 | 📊 Processing tracker initialized for user test_user_123: 5 emails to process
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | utils:92 | ⏳ test_user_123: Processing emails
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 1/5 - ID: email1
+2025-06-07 11:56:40 | DEBUG | utils:97 | ✅ test_user_123: Email email1 processed successfully (1/5)
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | __main__:66 | ✅ Email 1 processed successfully
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 2/5 - ID: email2
+2025-06-07 11:56:40 | DEBUG | utils:97 | ✅ test_user_123: Email email2 processed successfully (2/5)
+2025-06-07 11:56:40 | [32mℹ️ INFO[0m | __main__:66 | ✅ Email 2 processed successfully
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 3/5 - ID: email3
+2025-06-07 11:56:41 | DEBUG | utils:97 | ✅ test_user_123: Email email3 processed successfully (3/5)
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:66 | ✅ Email 3 processed successfully
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 4/5 - ID: 
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:108 | ❌ test_user_123: Email  failed in validation: Validation failed: Email ID must be a non-empty string
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | __main__:70 | ❌ Email 4 failed validation: Validation failed: Email ID must be a non-empty string
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:59 | 📧 Processing email 5/5 - ID: email5
+2025-06-07 11:56:41 | DEBUG | utils:97 | ✅ test_user_123: Email email5 processed successfully (4/5)
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:66 | ✅ Email 5 processed successfully
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:76 | 🧹 Testing content sanitization
+2025-06-07 11:56:41 | [33m⚠️ WARNING[0m | utils:161 | ⚠️ Content truncated from 15034 to 1000 characters
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:80 | 📝 Sanitized content length: 1015
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:83 | 🔧 Testing error formatting
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 401 Unauthorized
+NoneType: None
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: 401 Unauthorized -> User-friendly: Authentication failed. Please check your Google account permissions.
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 403 Forbidden
+NoneType: None
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: 403 Forbidden -> User-friendly: Access denied. Please ensure you have granted necessary permissions.
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 429 Too Many Requests
+NoneType: None
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: 429 Too Many Requests -> User-friendly: Too many requests. Please try again later.
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: Network connection failed
+NoneType: None
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: Network connection failed -> User-friendly: Network connection issue. Please check your internet connection.
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: Some unknown error occurred
+NoneType: None
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:95 | 🔄 Original: Some unknown error occurred -> User-friendly: An error occurred during email processing. Please try again.
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | utils:131 | 📊 Processing Summary for test_user_123:
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | utils:132 |    📧 Total emails: 5
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | utils:133 |    ✅ Successful: 4
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | utils:134 |    ❌ Failed: 1
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | utils:135 |    📈 Success rate: 80.0%
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | utils:136 |    ⏱️ Duration: 0.51s
+2025-06-07 11:56:41 | [33m⚠️ WARNING[0m | utils:139 |    🚨 Error breakdown:
+2025-06-07 11:56:41 | [33m⚠️ WARNING[0m | utils:146 |      - validation: 1 errors
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:100 | ✅ Logging system test completed successfully
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:101 | 📝 Check 'gmail_upload.log' for detailed logs
+2025-06-07 11:56:41 | [32mℹ️ INFO[0m | __main__:102 | 🚨 Check 'gmail_upload_errors.log' for error logs
