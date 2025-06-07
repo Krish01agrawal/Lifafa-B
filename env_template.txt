@@ -1,0 +1,43 @@
+# Gmail OAuth Configuration - 3 Month Token Expiry Setup
+# Copy this to .env file in your project root
+
+# Google OAuth2 Configuration
+GOOGLE_CLIENT_ID=your-google-client-id.apps.googleusercontent.com
+GOOGLE_CLIENT_SECRET=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
+
+# OAuth2 Redirect URI (must match Google Cloud Console settings)
+REDIRECT_URI=http://localhost:8001/auth/callback
+
+# Frontend URL for redirects after authentication
+FRONTEND_URL=http://localhost:8000
+
+# JWT Configuration (Extended to 3 months)
+JWT_SECRET=your-super-secret-jwt-key-change-in-production
+
+# MongoDB Configuration
+MONGO_URI=mongodb+srv://itskashyap26:%40gitartham1@cluster0.swuj2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+
+# Memory Platform Configuration (Mem0)
+MEM0_API_KEY=your-mem0-api-key
+
+# OpenAI Configuration (for AI responses)
+OPENAI_API_KEY=your-openai-api-key
+
+# ===================================================
+# INSTRUCTIONS TO CREATE .env FILE:
+# ===================================================
+# 
+# 1. Copy this file to .env in your project root:
+#    cp env_template.txt .env
+#
+# 2. Replace the placeholder values with your actual keys:
+#    - Get GOOGLE_CLIENT_ID from Google Cloud Console
+#    - GOOGLE_CLIENT_SECRET is already set above
+#    - MONGO_URI is already set above
+#    - Get MEM0_API_KEY from Mem0 dashboard
+#    - Get OPENAI_API_KEY from OpenAI dashboard
+#
+# 3. Your JWT tokens will now expire in 3 months instead of 7 days
+# 4. Google OAuth tokens will auto-refresh when expired
+# 
+# =================================================== 

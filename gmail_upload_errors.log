@@ -1,0 +1,42 @@
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | __main__:41 | ❌ This is an error message
+None
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:108 | ❌ test_user_123: Email  failed in validation: Validation failed: Email ID must be a non-empty string
+None
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | __main__:70 | ❌ Email 4 failed validation: Validation failed: Email ID must be a non-empty string
+None
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 401 Unauthorized
+(None, None, None)
+NoneType: None
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 403 Forbidden
+(None, None, None)
+NoneType: None
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 429 Too Many Requests
+(None, None, None)
+NoneType: None
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: Network connection failed
+(None, None, None)
+NoneType: None
+2025-06-07 11:41:47 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: Some unknown error occurred
+(None, None, None)
+NoneType: None
+2025-06-07 11:56:40 | [31m❌ ERROR[0m | __main__:41 | ❌ This is an error message
+None
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:108 | ❌ test_user_123: Email  failed in validation: Validation failed: Email ID must be a non-empty string
+None
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | __main__:70 | ❌ Email 4 failed validation: Validation failed: Email ID must be a non-empty string
+None
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 401 Unauthorized
+(None, None, None)
+NoneType: None
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 403 Forbidden
+(None, None, None)
+NoneType: None
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: 429 Too Many Requests
+(None, None, None)
+NoneType: None
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: Network connection failed
+(None, None, None)
+NoneType: None
+2025-06-07 11:56:41 | [31m❌ ERROR[0m | utils:236 | ❌ Technical error in email processing: Some unknown error occurred
+(None, None, None)
+NoneType: None

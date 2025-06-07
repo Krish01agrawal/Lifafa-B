@@ -1,0 +1,1422 @@
+2025-06-07 12:15:12 | [31m❌ ERROR[0m | app.gmail:91 | Unexpected error on page 1: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'google.auth.exceptions.RefreshError'>, RefreshError('The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x1225fecc0>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 58, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 12:15:12 | [31m❌ ERROR[0m | app.gmail:232 | Fatal error during email fetch: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x1225fe480>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 58, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 92, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 12:15:12 | [31m❌ ERROR[0m | app.main:501 | ❌ Step 3/6: Failed to fetch emails for user_id 117694049755408407575: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x1217e1dc0>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 58, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 92, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 497, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 233, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 12:15:12 | [31m❌ ERROR[0m | app.main:607 | 💥 Critical error during email processing for user_id 117694049755408407575 (after 0.38s): Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x12172dd00>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 58, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 92, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 497, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 233, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 502, in _trigger_and_process_user_emails
+    raise Exception(f"Email fetch failed: {str(fetch_error)}")
+Exception: Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 12:17:08 | [31m❌ ERROR[0m | app.gmail:91 | Unexpected error on page 1: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'google.auth.exceptions.RefreshError'>, RefreshError('The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x1226ed400>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 58, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 12:17:08 | [31m❌ ERROR[0m | app.gmail:232 | Fatal error during email fetch: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x122678080>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 58, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 92, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 12:17:08 | [31m❌ ERROR[0m | app.main:501 | ❌ Step 3/6: Failed to fetch emails for user_id 117694049755408407575: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x12234b100>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 58, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 92, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 497, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 233, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 12:17:08 | [31m❌ ERROR[0m | app.main:607 | 💥 Critical error during email processing for user_id 117694049755408407575 (after 0.39s): Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x1226eec00>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 58, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Downloads/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 92, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 497, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 233, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 502, in _trigger_and_process_user_emails
+    raise Exception(f"Email fetch failed: {str(fetch_error)}")
+Exception: Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 15:28:12 | [31m❌ ERROR[0m | app.main:430 | HTTPException in /me endpoint: User not found
+False
+2025-06-07 15:30:06 | [31m❌ ERROR[0m | app.gmail:109 | Unexpected error on page 1: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'google.auth.exceptions.RefreshError'>, RefreshError('The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x129916780>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 15:30:06 | [31m❌ ERROR[0m | app.gmail:250 | Fatal error during email fetch: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x129616000>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 15:30:06 | [31m❌ ERROR[0m | app.main:563 | ❌ Step 4/7: Failed to fetch emails for user_id 117694049755408407575: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x129917500>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 559, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 251, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 15:30:06 | [31m❌ ERROR[0m | app.main:669 | 💥 Critical error during email processing for user_id 117694049755408407575 (after 0.37s): Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x1299169c0>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 559, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 251, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 564, in _trigger_and_process_user_emails
+    raise Exception(f"Email fetch failed: {str(fetch_error)}")
+Exception: Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:07:53 | [31m❌ ERROR[0m | app.main:301 | Error in OAuth callback: name 'timezone' is not defined
+None
+2025-06-07 16:08:19 | [31m❌ ERROR[0m | app.main:301 | Error in OAuth callback: name 'timezone' is not defined
+None
+2025-06-07 16:09:39 | [31m❌ ERROR[0m | app.gmail:109 | Unexpected error on page 1: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'google.auth.exceptions.RefreshError'>, RefreshError('The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x10a21d4c0>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:09:39 | [31m❌ ERROR[0m | app.gmail:250 | Fatal error during email fetch: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x109532c80>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:09:39 | [31m❌ ERROR[0m | app.main:596 | ❌ Step 4/7: Failed to fetch emails for user_id 117694049755408407575: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x10a27ad40>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 592, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 251, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:09:39 | [31m❌ ERROR[0m | app.main:702 | 💥 Critical error during email processing for user_id 117694049755408407575 (after 0.37s): Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x10813dc80>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 592, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 251, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 597, in _trigger_and_process_user_emails
+    raise Exception(f"Email fetch failed: {str(fetch_error)}")
+Exception: Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:12:28 | [31m❌ ERROR[0m | app.gmail:109 | Unexpected error on page 1: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'google.auth.exceptions.RefreshError'>, RefreshError('The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x10a6161c0>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:12:28 | [31m❌ ERROR[0m | app.gmail:250 | Fatal error during email fetch: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x10a66f540>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:12:28 | [31m❌ ERROR[0m | app.main:596 | ❌ Step 4/7: Failed to fetch emails for user_id 117694049755408407575: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x10a56c040>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 592, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 251, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:12:28 | [31m❌ ERROR[0m | app.main:702 | 💥 Critical error during email processing for user_id 117694049755408407575 (after 1.23s): Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x109d19a40>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 592, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 251, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 597, in _trigger_and_process_user_emails
+    raise Exception(f"Email fetch failed: {str(fetch_error)}")
+Exception: Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:33:24 | [31m❌ ERROR[0m | app.gmail:109 | Unexpected error on page 1: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'google.auth.exceptions.RefreshError'>, RefreshError('The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x10773e500>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:33:24 | [31m❌ ERROR[0m | app.gmail:250 | Fatal error during email fetch: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x1071724c0>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:33:24 | [31m❌ ERROR[0m | app.main:596 | ❌ Step 4/7: Failed to fetch emails for user_id 117694049755408407575: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x107793c80>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 592, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 251, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+2025-06-07 16:33:24 | [31m❌ ERROR[0m | app.main:702 | 💥 Critical error during email processing for user_id 117694049755408407575 (after 0.84s): Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+(<class 'Exception'>, Exception('Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.'), <traceback object at 0x10751e140>)
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 76, in fetch_emails
+    results = await run_in_threadpool(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<6 lines>...
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/starlette/concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+        func, args, abandon_on_cancel=abandon_on_cancel, limiter=limiter
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 2470, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/anyio/_backends/_asyncio.py", line 967, in run
+    result = context.run(func, *args)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/_helpers.py", line 130, in positional_wrapper
+    return wrapped(*args, **kwargs)
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 923, in execute
+    resp, content = _retry_request(
+                    ~~~~~~~~~~~~~~^
+        http,
+        ^^^^^
+    ...<7 lines>...
+        headers=self.headers,
+        ^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/googleapiclient/http.py", line 191, in _retry_request
+    resp, content = http.request(uri, method, *args, **kwargs)
+                    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google_auth_httplib2.py", line 245, in request
+    self.credentials.refresh(self._request)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/venv/lib/python3.13/site-packages/google/oauth2/credentials.py", line 397, in refresh
+    raise exceptions.RefreshError(
+    ...<3 lines>...
+    )
+google.auth.exceptions.RefreshError: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 110, in fetch_emails
+    raise Exception(f"Failed to fetch message list: {str(e)}")
+Exception: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 592, in _trigger_and_process_user_emails
+    emails = await fetch_emails(service, user_id=user_id, max_results=max_results)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/gmail.py", line 251, in fetch_emails
+    raise Exception(f"Email fetch failed: {str(e)}")
+Exception: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/krishagrawal/Desktop/gmailDatatojson/GmailChatbot.V1.1/backend/app/main.py", line 597, in _trigger_and_process_user_emails
+    raise Exception(f"Email fetch failed: {str(fetch_error)}")
+Exception: Email fetch failed: Email fetch failed: Failed to fetch message list: The credentials do not contain the necessary fields need to refresh the access token. You must specify refresh_token, token_uri, client_id, and client_secret.
